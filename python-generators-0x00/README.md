@@ -23,14 +23,15 @@ Generators are a special type of iterator in Python, designed to yield values on
 
 Examples:
 
-Generator Function:
+<pre><code> Generator Function:
 
-<pre><code>def firstn(n):
+def firstn(n):
     num = 0
     while num < n:
         yield num
-        num += 1
-Generator Expression:
+        num += 1 </code></pre>
+                  
+<pre><code> Generator Expression:
 
 squares = (x * x for x in range(10)) </code></pre>
 
