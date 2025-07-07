@@ -25,19 +25,20 @@ Examples:
 
 Generator Function:
 
-def firstn(n):
+<pre><code>def firstn(n):
     num = 0
     while num < n:
         yield num
         num += 1
 Generator Expression:
 
-squares = (x * x for x in range(10))
+squares = (x * x for x in range(10)) </code></pre>
 
 ## Benefits:
 
-Memory Efficiency: Only one item is produced at a time, reducing memory usage.
-Lazy Evaluation: Values are computed as needed, which is ideal for handling large data sets.
+- Memory Efficiency: Only one item is produced at a time, reducing memory usage.
+
+- Lazy Evaluation: Values are computed as needed, which is ideal for handling large data sets.
 
 ## 2.**Decorators: Modifying Functions and Methods**
 
@@ -51,7 +52,7 @@ Decorators are functions that modify the behavior of another function or method.
 
 Examples: Simple Decorator:
 
-def decorator(func):
+<pre><code> def decorator(func):
     def wrapper():
         print("Before function call")
         func()
@@ -71,11 +72,12 @@ def do_twice(func):
 
 @do_twice
 def greet(name):
-    print(f"Hello {name}")
+    print(f"Hello {name}") </code></pre>
 
 ## Benefits:
 
-Code Reusability: Apply the same behavior across multiple functions. Separation of Concerns: Keep the core logic separate from the cross-cutting concerns like logging or access control.
+- Code Reusability: Apply the same behavior across multiple functions.
+- Separation of Concerns: Keep the core logic separate from the cross-cutting concerns like logging or access control.
 
 ## 3.**Context Managers: Managing Resources with the with Statement**
 
@@ -88,16 +90,16 @@ Context managers in Python ensure that resources are properly acquired and relea
 
 Examples: Class-based Context Manager: “`python class File: def init(self, filename, method): self.fileobj = open(file_name, method)
 
-def __enter__(self):
+<pre><code> def __enter__(self):
     return self.file_obj
 
 def __exit__(self, type, value, traceback):
     self.file_obj.close()
-with File(‘demo.txt’, ‘w’) as f: f.write(‘Hello World!’) ”`
+with File(‘demo.txt’, ‘w’) as f: f.write(‘Hello World!’) ”` </code></pre>
 
-Context Manager using contextlib:
+## Context Manager using contextlib:
 
-from contextlib import contextmanager
+<pre><code> from contextlib import contextmanager
 
 @contextmanager
 def open_file(name):
@@ -108,13 +110,14 @@ def open_file(name):
         f.close()
 
 with open_file('demo.txt') as f:
-    f.write('Hello World!')
+    f.write('Hello World!') </code></pre>
 
 ## Benefits:
 
-Automatic Resource Management: Ensures resources like files and network connections are properly closed after use.
-Cleaner Code: Reduces boilerplate code and improves readability.
-Asynchronous Programming: Implementing Async Functions and Coroutines
+- Automatic Resource Management: Ensures resources like files and network connections are properly closed after use.
+- Cleaner Code: Reduces boilerplate code and improves readability.
+- Asynchronous Programming: Implementing Async Functions and Coroutines
+
 Asynchronous programming allows for non-blocking code execution, enabling tasks to run concurrently. Python’s asyncio library provides tools to write asynchronous code using async and await keywords, making it suitable for IO-bound tasks like web servers and network communication.
 
 ## Key Concepts:
@@ -125,7 +128,7 @@ Asynchronous programming allows for non-blocking code execution, enabling tasks 
 
 Examples: Basic Coroutine:
 
-import asyncio
+<pre><code> import asyncio
 
 async def greet(name):
     print(f"Hello {name}")
@@ -141,16 +144,22 @@ async def main():
         greet("Bob"),
     )
 
-asyncio.run(main())
+asyncio.run(main()) </code></pre>
 
 ## Benefits:
 
-Improved Performance: Particularly in IO-bound tasks, as the program doesn’t have to wait for operations like file reading or network requests to complete. Efficient Concurrency: Handles many tasks simultaneously without the overhead of threading.
+- Improved Performance: Particularly in IO-bound tasks, as the program doesn’t have to wait for operations like file reading or network requests to complete.
+- Efficient Concurrency: Handles many tasks simultaneously without the overhead of threading.
 
 ## Additional Resources
 
-Python generators
-How to use generators in python
-Python decorators
-Context managers
-Asynchronous programming in python
+[Python generators](https://wiki.python.org/moin/Generators)
+
+[How to use generators in python](https://realpython.com/introduction-to-python-generators/)
+
+[Python decorators](https://realpython.com/primer-on-python-decorators/#simple-decorators-in-python)
+
+[Context managers](https://book.pythontips.com/en/latest/context_managers.html)
+
+[Asynchronous programming in python](https://docs.python.org/3/library/asyncio.html)
+
