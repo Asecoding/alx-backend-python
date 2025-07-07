@@ -1,31 +1,23 @@
 #!/usr/bin/python3
-
+"""
+This module contains a generator function to stream users from the database.
+"""
 import mysql.connector
+from seed import connect_to_prodev
 
 
-# ✅ Generator: Stream users in batches
-def stream_users_in_batches(batch_size):
-    connection = mysql.connector.connect(
-        host="localhost",
-        user="your_username",
-        password="your_password",
-        database="ALX_prodev"
-    )
-    cursor = connection.cursor()
-    cursor.execute("SELECT user_id, name, email, age FROM user_data")
-
-    while True:
-        rows = cursor.fetchmany(batch_size)
-        if not rows:
-            break
-        yield rows
-
-    cursor.close()
-    connection.close()
-
-
-# ✅ Processor: Filter users over age 25
-def batch_processing():
-    for batch in stream_users_in_batches(batch_size=10):
-        filtered = [user for user in batch if user[3] > 25]  # user[3] = age
-        yield filtered
+def stream_users():
+    """Fetches rows one by one from the user_data table."""
+    connection = connect_to_prodev()
+    if connection:
+        try:
+            cursor = connection.cursor(dictionary=True)
+            cursor.execute("SELECT * FROM user_data")
+            for row in cursor:
+                yield row
+        except mysql.connector.Error as err:
+            print(f"Error: {err}")
+        finally:
+            if connection.is_connected():
+                cursor.close()
+                connection.close()
