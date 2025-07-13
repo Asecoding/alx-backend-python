@@ -9,7 +9,7 @@ import uuid
 import os
 from mysql.connector import errorcode
 
-# ✅ 1. Connect to MySQL server (no DB selected yet)
+# 1. Connect to MySQL server (no DB selected yet)
 def connect_db():
     return mysql.connector.connect(
         host="localhost",
@@ -17,7 +17,7 @@ def connect_db():
         password="your_password"
     )
 
-# ✅ 2. Create database if it doesn't exist
+# 2. Create database if it doesn't exist
 def create_database(connection):
     cursor = connection.cursor()
     try:
@@ -26,7 +26,7 @@ def create_database(connection):
     finally:
         cursor.close()
 
-# ✅ 3. Connect to ALX_prodev database
+# 3. Connect to ALX_prodev database
 def connect_to_prodev():
     return mysql.connector.connect(
         host="localhost",
@@ -35,7 +35,7 @@ def connect_to_prodev():
         database="ALX_prodev"
     )
 
-# ✅ 4. Create user_data table with UUID primary key
+# 4. Create user_data table with UUID primary key
 def create_table(connection):
     cursor = connection.cursor()
     cursor.execute("""
@@ -51,7 +51,7 @@ def create_table(connection):
     print("✅ Table 'user_data' ensured.")
     cursor.close()
 
-# ✅ 5. Insert data from CSV if not already present
+# 5. Insert data from CSV if not already present
 def insert_data(connection, data):
     cursor = connection.cursor()
     for row in data:
@@ -69,14 +69,14 @@ def insert_data(connection, data):
     print("✅ Data inserted.")
     cursor.close()
 
-# ✅ 6. Load CSV data
+# 6. Load CSV data
 def load_csv_data(filename):
     with open(filename, newline='') as csvfile:
         reader = csv.reader(csvfile)
         next(reader)  # Skip header
         return [row for row in reader]
 
-# ✅ 7. Main execution
+# 7. Main execution
 if __name__ == "__main__":
     try:
         conn = connect_db()
