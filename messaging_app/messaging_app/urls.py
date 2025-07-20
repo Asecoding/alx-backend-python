@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 """messaging_app URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
+=======
+"""
+URL configuration for messaging_app project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/5.2/topics/http/urls/
+>>>>>>> c5abf0ed1ce4ee654d6ee83b984c7cf6c048b78a
 Examples:
 Function views
     1. Add an import:  from my_app import views
