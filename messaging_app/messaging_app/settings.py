@@ -38,7 +38,7 @@ SECRET_KEY = 'django-insecure-$)!zadxbeu!u^+qyn%gy=z=46(g)rq01$b#ja4-^e+8o5@^+ys
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-l)k+0=9p#7gl^-h#8hkh3s626li3*8*3wf^(%g7w7evon$6a0r'
 >>>>>>> c5abf0ed1ce4ee654d6ee83b984c7cf6c048b78a
-
+i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -54,10 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-=======
     'rest_framework',
->>>>>>> c5abf0ed1ce4ee654d6ee83b984c7cf6c048b78a
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
