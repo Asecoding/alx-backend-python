@@ -71,6 +71,7 @@ MIDDLEWARE = [
     'messaging_app.middleware.RequestLoggingMiddleware',
     'messaging_app.middleware.RestrictAccessByTimeMiddleware'
     'messaging_app.middleware.OffensiveLanguageMiddleware',
+    'messaging_app.middleware.RolePermissionMiddleware',
     
 ]
 
