@@ -54,10 +54,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-<<<<<<< HEAD
-    'rest_framework_simplejwt.token_blacklist',
-=======
->>>>>>> 93ada7755305a28c3d8a31cb410a0580f10cbafe
+    'chats',
+
 ]
 
 MIDDLEWARE = [
