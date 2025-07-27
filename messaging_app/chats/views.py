@@ -42,3 +42,8 @@ class MessageViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Automatically set the sender to the logged-in user
         serializer.save(sender=self.request.user)
+
+class MessageViewSet(viewsets.ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+    permission_classes = [IsParticipantOfConversation]
