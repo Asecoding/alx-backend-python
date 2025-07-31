@@ -32,3 +32,9 @@ def log_message_edit(sender, instance, **kwargs):
 message = Message.objects.get(id=some_id)
 history = message.history.all().order_by('-edited_at')
 
+User = get_user_model()
+
+@receiver(post_delete, sender=User)
+def cleanup_related_data(sender, instance, **kwargs):
+    print(f"🧹 Cleaning up data for deleted user: {instance.username}")
+    # Optional: log or trigger external cleanup
