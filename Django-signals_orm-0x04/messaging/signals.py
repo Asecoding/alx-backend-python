@@ -28,3 +28,7 @@ def log_message_edit(sender, instance, **kwargs):
         except Message.DoesNotExist:
             pass  # First-time creation, no history needed
 
+# Example: Fetching history in a view
+message = Message.objects.get(id=some_id)
+history = message.history.all().order_by('-edited_at')
+
