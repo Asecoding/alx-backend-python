@@ -1,0 +1,15 @@
+# kubeservice.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-service
+spec:
+  selector:
+    app: django
+    version: blue  # Change to 'green' when switching
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+  type: ClusterIP
+
