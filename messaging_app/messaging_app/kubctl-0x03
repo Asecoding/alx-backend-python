@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Script: kubctl-0x03
+# Purpose: Apply rolling update, monitor rollout, test for downtime, verify pods
+
+DEPLOYMENT="django-blue"
+SERVICE="django-service"
+PORT=8000
+
+echo "🚀 Applying updated deployment (version 2.0)..."
+kubectl apply -f blue_deployment.yaml
+
+echo "🔄 Monitoring rollout status..."
+kubectl rollout status deployment/$DEPLOYMENT
+
+echo "🌐 Starting curl loop to test for downtime..."
+CLUSTER_IP=$(kubectl get svc $SERVICE -o jsonpath='{.spec.clusterIP}')
+
+for i in {1..20}; do
+    response=$(curl -s --max-time 2 http://$CLUSTER_IP:$PORT/)
+    if [ $? -eq 0 ]; then
+        echo "✅ [$i] Response OK"
+    else
+        echo "❌ [$i] Request failed"
+    fi
+    sleep 1
+done
+
+echo "🔍 Verifying current pods..."
+kubectl get pods -l app=django,version=blue
+
