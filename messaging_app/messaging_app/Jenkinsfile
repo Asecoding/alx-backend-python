@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+
+    tools {
+        // Use ShiningPanda to set up Python
+        // Ensure Python 3.x is installed on Jenkins container
+    }
+
+    environment {
+        VENV_DIR = ".venv"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git credentialsId: 'github-cred', url: 'https://github.com/<your-username>/<messaging-app>.git', branch: 'main'
+            }
+        }
+
+        stage('Setup Python Env') {
+            steps {
+                sh '''
+                  python3 -m venv ${VENV_DIR}
+                  source ${VENV_DIR}/bin/activate
+                  pip install --upgrade pip
+                  pip install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh '''
+                  source ${VENV_DIR}/bin/activate
+                  pytest --junitxml=reports/results.xml --maxfail=5 --disable-warnings -q
+                '''
+            }
+            post {
+                always {
+                    junit 'reports/results.xml'
+                }
+            }
+        }
+    }
+
+    triggers {
+        // Manual trigger only, no SCM polling or webhook
+    }
+}
+
